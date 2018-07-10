@@ -26,11 +26,11 @@ public abstract class EntityRewrite {
 			System.out.println("Rewriting packet ID: " + packetId);
 			writePacketId(newbuf, packetId);
 			for (EntityRewriteCommand command : chain) {
-				System.out.println("In " + packetId + " we are using " + command.getClass().getSimpleName() + " rewritter!");
+				System.out.println("In " + packetId + " we are using " + command.getClass() + " rewritter!");
 				command.rewrite(buf, newbuf, rewritefunc);
 			}
-			System.out.println("NewByteBuf Size: " + newbuf.capacity());
-			System.out.println("Buf Size: " + buf.capacity());
+			System.out.println("NewByteBuf size: " + newbuf.capacity());
+			System.out.println("Buf size: " + buf.capacity());
 			buf.clear();
 			buf.writeBytes(newbuf);
 		} finally {

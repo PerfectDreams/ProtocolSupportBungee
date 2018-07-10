@@ -23,10 +23,14 @@ public abstract class EntityRewrite {
 		}
 		ByteBuf newbuf = Allocator.allocateBuffer();
 		try {
+			System.out.println("Rewriting packet ID: " + packetId);
 			writePacketId(newbuf, packetId);
 			for (EntityRewriteCommand command : chain) {
+				System.out.println("In " + packetId + " we are using " + command.getClass().getSimpleName() + " rewritter!");
 				command.rewrite(buf, newbuf, rewritefunc);
 			}
+			System.out.println("NewByteBuf Size: " + newbuf.capacity());
+			System.out.println("Buf Size: " + buf.capacity());
 			buf.clear();
 			buf.writeBytes(newbuf);
 		} finally {

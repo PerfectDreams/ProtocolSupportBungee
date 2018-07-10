@@ -14,7 +14,7 @@ public abstract class EntityRewriteCommand {
 
 		@Override
 		protected void rewrite(ByteBuf from, ByteBuf to, IntUnaryOperator rewritefunc) {
-			writeEntityId(to, rewritefunc.applyAsInt(readEntityId(from)));
+			writeEntityId(to, readEntityId(from));
 		}
 
 		protected abstract int readEntityId(ByteBuf from);
